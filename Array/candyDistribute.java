@@ -1,0 +1,17 @@
+import java.util.HashSet;
+import java.util.Set;
+class candyDistribute {
+    public int distributeCandies(int[] candyType) {
+        // She eats only half of the candy
+        int n = candyType.length / 2;
+
+        // Use hashSet to remove Duplicate
+        Set<Integer> set = new HashSet<>();
+        for(int candy : candyType) {
+            set.add(candy);
+        }
+
+        // Return Max he eats
+        return Math.min(set.size() , n);
+    }
+}
