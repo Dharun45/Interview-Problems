@@ -1,0 +1,21 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int maxReach = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            // If i <= 0 means immed return F
+            if(i > maxReach) {
+                return false;
+            }
+
+            // We need to find  max jump to reach last pos
+            maxReach = Math.max(maxReach , i + nums[i]);
+
+            if(maxReach >= nums.length - 1) {
+                return true;
+            }
+        }
+
+        return true;
+    }
+}
