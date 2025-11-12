@@ -1,0 +1,40 @@
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Scanner;
+
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+        // Use HashMap
+        Map<Integer , Integer> first = new HashMap<>();
+        Map<Integer , Integer> last = new HashMap<>();
+        Map<Integer , Integer> count = new HashMap<>();
+
+        // Count appearance of each val
+        for(int i = 0; i < nums.length; i++) {
+            // First occurance
+            if(!first.containsKey(nums[i])) {
+                first.put(nums[i] , i);
+            }
+
+            // Last Occurance
+            last.put(nums[i] , i);
+
+            // Count the each appearance
+            count.put(nums[i] , count.getOrDefault(nums[i] , 0) + 1);    // If appear +1 or else 0
+        }
+
+        // To Find maxFreq
+        int degree = Collections.max(count.values());
+        int minLen = nums.length;
+
+        for(int num : count.keySet()) { // we need only Set items
+            if(count.get(num) == degree) {
+                int len = last.get(num) - first.get(num) + 1;
+                minLen = Math.min(minLen , len);
+            }
+        }
+
+        // return min Length
+        return minLen;
+    }
+}
