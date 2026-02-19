@@ -22,4 +22,9 @@ class Solution {
         }
 
     }
+
+    public static void main(String arg[]) {
+        int arr[] = {2,4,5,1,3};
+        System.out.println(sortColors(arr));
+    }
 }
